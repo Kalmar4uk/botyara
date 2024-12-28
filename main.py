@@ -4,7 +4,7 @@ import sqlite3
 from telegram.ext import CommandHandler, Updater, Filters, MessageHandler
 from dotenv import load_dotenv
 
-from create_and_write_db import create_db, write_message_to_db
+from create_and_write_db import create_db, write_message_to_db, DATABASE
 from write_to_file import write
 
 load_dotenv()
@@ -37,7 +37,7 @@ def stats(update, context):
     """Готовим и отправляем стату в чат"""
     chat = update.effective_chat
     chat_for_db = "tab"+str(update.effective_chat.id)[1:]+".sqlite3"
-    con = sqlite3.connect(chat_for_db)
+    con = sqlite3.connect(f"{DATABASE}{chat_for_db}")
     cur = con.cursor()
     try:
         request = cur.execute(
@@ -65,7 +65,7 @@ def stats(update, context):
 def export(update, context):
     chat = update.effective_chat.id
     chat_for_db = "tab"+str(chat)[1:]+".sqlite3"
-    con = sqlite3.connect(chat_for_db)
+    con = sqlite3.connect(f"{DATABASE}{chat_for_db}")
     cur = con.cursor()
     try:
         request = cur.execute(

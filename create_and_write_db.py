@@ -1,9 +1,11 @@
 import sqlite3
 
+DATABASE = "database/"
+
 
 def create_db(chat_id):
     """Создаем БД"""
-    con = sqlite3.connect(chat_id)
+    con = sqlite3.connect(f"{DATABASE}{chat_id}")
     cur = con.cursor()
     table = """
     CREATE TABLE IF NOT EXISTS user_messages(
@@ -24,7 +26,7 @@ def create_db(chat_id):
 
 def write_message_to_db(user_message, chat_id, kaiten=None):
     """Запись в БД сообщения"""
-    con = sqlite3.connect(chat_id)
+    con = sqlite3.connect(f"{DATABASE}{chat_id}")
     cur = con.cursor()
     if kaiten:
         cur.executemany(f"INSERT INTO {kaiten} VALUES(?, ?, ?);", user_message)
