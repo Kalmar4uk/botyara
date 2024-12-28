@@ -15,7 +15,7 @@ updater = Updater(token=TOKEN)
 
 def monitors_messages(update, context):
     """Мониторим сообщения и готовим для записи в БД"""
-    chat_id = "tab"+str(update.effective_chat.id)[1:]+".sqlite"
+    chat_id = "tab"+str(update.effective_chat.id)[1:]+".sqlite3"
     create_db(chat_id)
     user_message = []
     message = update.message.text
@@ -36,7 +36,7 @@ def monitors_messages(update, context):
 def stats(update, context):
     """Готовим и отправляем стату в чат"""
     chat = update.effective_chat
-    chat_for_db = "tab"+str(update.effective_chat.id)[1:]+".sqlite"
+    chat_for_db = "tab"+str(update.effective_chat.id)[1:]+".sqlite3"
     con = sqlite3.connect(chat_for_db)
     cur = con.cursor()
     try:
@@ -64,7 +64,7 @@ def stats(update, context):
 
 def export(update, context):
     chat = update.effective_chat.id
-    chat_for_db = "tab"+str(chat)[1:]+".sqlite"
+    chat_for_db = "tab"+str(chat)[1:]+".sqlite3"
     con = sqlite3.connect(chat_for_db)
     cur = con.cursor()
     try:
