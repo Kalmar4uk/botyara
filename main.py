@@ -88,6 +88,7 @@ def export(update, context):
 
 
 def hello(update, context):
+    """Приветствие бота"""
     chat = update.effective_chat
     output = f"Привет {update.message.from_user.username}, я ботяра ботетский, я незаметно слежу за всеми сообщениями в чате и сохраняю, что бы потом когда ты попросишь выдать кол-во. Для выдачи используй команды /stat и /export"
     context.bot.send_message(chat_id=chat.id, text=output)
