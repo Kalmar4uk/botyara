@@ -1,6 +1,5 @@
 import sqlite3
-
-DATABASE = "database/"
+from constants import DATABASE
 
 
 def create_db(chat_id):

@@ -1,15 +1,11 @@
-import os
 import re
 import sqlite3
 from telegram.ext import CommandHandler, Updater, Filters, MessageHandler
-from dotenv import load_dotenv
 
-from create_and_write_db import create_db, write_message_to_db, DATABASE
+from constants import DATABASE, TOKEN
+from create_and_write_db import create_db, write_message_to_db
 from write_to_file import write
 
-load_dotenv()
-
-TOKEN = os.getenv("TELEGRAM_TOKEN")
 updater = Updater(token=TOKEN)
 
 
@@ -83,7 +79,7 @@ def export(update, context):
         write(request)
         context.bot.send_document(
             chat_id=chat,
-            document=open("output/tasks_kaiten.csv")
+            document=open("../output/tasks_kaiten.csv")
         )
 
 
