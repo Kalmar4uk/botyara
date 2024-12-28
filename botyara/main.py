@@ -86,16 +86,22 @@ def export(update, context):
 def hello(update, context):
     """Приветствие бота"""
     chat = update.effective_chat
-    output = f"Привет {update.message.from_user.username}, я ботяра ботетский, я незаметно слежу за всеми сообщениями в чате и сохраняю, что бы потом когда ты попросишь выдать кол-во. Для выдачи используй команды /stat и /export"
+    output = (
+        f"Привет {update.message.from_user.username}, "
+        f"я ботяра ботетский, "
+        f"я незаметно слежу за всеми сообщениями в чате и сохраняю, "
+        f"что бы потом когда ты попросишь выдать кол-во. "
+        f"\nДля выдачи используй команды /stat и /export"
+    )
     context.bot.send_message(chat_id=chat.id, text=output)
 
 
 def main():
-    updater.dispatcher.add_handler(CommandHandler('start', hello))
+    updater.dispatcher.add_handler(CommandHandler("start", hello))
     updater.dispatcher.add_handler(
-        CommandHandler('stat', stats))
+        CommandHandler("stat", stats))
     updater.dispatcher.add_handler(
-        CommandHandler('export', export)
+        CommandHandler("export", export)
     )
     updater.dispatcher.add_handler(
         MessageHandler(Filters.text, monitors_messages)
@@ -104,5 +110,5 @@ def main():
     updater.idle()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
