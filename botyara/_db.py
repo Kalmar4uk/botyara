@@ -1,5 +1,5 @@
 # Когда-нибудь возможно пригоидтся, пусть будет
-# if chat_id != "tab1002047652376.sqlite":
+# if chat_id != "": # Необходимо вставить chat_id
 #     table = """
 #     CREATE TABLE IF NOT EXISTS user_messages(
 #         username TEXT,
